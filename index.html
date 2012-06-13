@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Map Site</title>
+
+    <!-- fxcanvas -->
+    <script>var IE = false;</script>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="ext/fxcanvas/jooscript.js"></script>
+    <script type="text/javascript" src="ext/fxcanvas/fxcanvas.js"></script>
+    <script type="text/javascript" src="ext/fxcanvas/flash_backend.js"></script>
+    <comment><script type="text/javascript" src="ext/fxcanvas/canvas_backend.js"></script></comment>
+    <script>IE = true;</script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="map.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="shortcut icon" href="http://mapbox.com/images/favicon.ico" type="image/x-icon" />
+</head>
+<body class="right">
+    <div id="header"><div class="limiter">
+        <img src="img/logo.png">
+        <h1>Canvas Map</h1>
+        <a href="#" class="switch" id="elections">Election data</a>
+    </div></div>
+    <div id="map" class="map"></div>
+    
+    <!-- External libraries and site script -->
+    <script src="elections.js"></script>
+    <script src="ext/jquery.min.js"></script>
+    <script src="ext/modestmaps.js"></script>
+    <script src="ext/modlayer.js"></script>
+    <script src="ext/wax/wax.mm.js"></script>
+    <script src="ext/wax/wax.ext.js"></script>
+    <script src="ext/easey.js"></script>
+    <script src="ext/mmg.js"></script>
+    <script src="script.js"></script>
+    <script src="dataLayer.js"></script>
+    
+    <!-- Site configuration -->
+    <script type="text/javascript">
+
+        dataLayer.settings = {
+            tiles: 'tiles/1.0.0/counties/{Z}/{X}/{Y}.png',
+            data: ''
+        };
+
+        // Make a new map in #map
+        var main = Map('map', {
+            api: 'http://a.tiles.mapbox.com/v3/mapbox.mapbox-light.jsonp',
+            center: {
+                lon: -90,
+                lat: 40,
+                zoom: 4
+            },
+            zoomRange: [3, 9],
+            features: [
+                'zoomwheel',
+                'zoombox',
+                'zoompan',
+                'share'
+            ]
+        }, dataLayer.add);
+            
+    </script>
+</body>
+</html>
